@@ -4,7 +4,6 @@ using System.Collections;
 public class finnish : MonoBehaviour
 {
     public int currnetlap = 0;
-    public int clap = 0;
 
     bool FinalLap()
     {
@@ -20,7 +19,7 @@ public class finnish : MonoBehaviour
 
     void OnTriggerEnter(Collider a)
     {
-        if (a.gameObject.GetComponent<movement>() != null)
+        if (a.gameObject.GetComponent<P1>() != null)
         {
             if(FinalLap() != true)
             {
