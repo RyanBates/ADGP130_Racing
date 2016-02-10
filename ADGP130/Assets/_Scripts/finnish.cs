@@ -3,11 +3,13 @@ using System.Collections;
 
 public class finnish : MonoBehaviour
 {
-    public int currnetlap = 0;
+    public int currnetlap = 1;
+    public int check = 0;
+ 
 
     bool FinalLap()
     {
-        if (currnetlap == 4)
+        if (currnetlap == 3)
         {
             return true;
         }
@@ -17,20 +19,52 @@ public class finnish : MonoBehaviour
         }
     }
 
+    bool checkpoint()
+    {
+        if (check == 2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
     void OnTriggerEnter(Collider a)
     {
         if (a.gameObject.GetComponent<P1>() != null)
         {
-            if(FinalLap() != true)
+            if (FinalLap() != true)
+            {
+                check += 1;
+            }
+            if (check == 2)
             {
                 currnetlap += 1;
-                //a.gameObject.GetComponent<Player1>().lap += 1;
+                check = 0;
             }
-            else
+            if (currnetlap == 3)
             {
-                //Race won by player one.
+                print("Race won by player one");
+            }
+        }
+
+        if (a.gameObject.GetComponent<P2>() != null)
+        {
+            if(FinalLap() != true)
+            {
+                check += 1;
+            }
+            if (check == 2)
+            {
+                currnetlap += 1;
+            }
+            if (currnetlap == 3)
+            {
+                print("Race won by player two");
             }
         }
     }
-
 }
